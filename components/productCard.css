@@ -1,11 +1,10 @@
 /* productCard.css */
 
-/* Centering the product container */
 .product-container {
     display: flex;
     /* flex-wrap: wrap; */
-    justify-content: center; /* Center the cards horizontally */
-    gap: 20px; /* Space between cards */
+    justify-content: center; 
+    gap: 20px;
     padding: 40px;
   }
   
@@ -86,7 +85,6 @@
     background-color: #0056b3;
   }
   
-  /* Ensure the grid container is centered */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

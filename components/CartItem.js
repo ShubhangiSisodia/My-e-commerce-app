@@ -1,7 +1,7 @@
 "use client";
 import { useDispatch } from "react-redux";
 import { removeFromCart, updateQuantity } from "../redux/cartSlice";
-import "./cart.css"; // Importing external CSS
+import "./cart.css"; 
 
 export default function CartItem({ item }) {
   const dispatch = useDispatch();

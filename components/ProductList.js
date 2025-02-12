@@ -11,8 +11,8 @@ export default function ProductList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState(""); // Sorting state
-  const [category, setCategory] = useState(""); // Category filter state
+  const [sortBy, setSortBy] = useState(""); 
+  const [category, setCategory] = useState(""); // filter state
 
   useEffect(() => {
     const loadProducts = async () => {
