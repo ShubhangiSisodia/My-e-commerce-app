@@ -13,7 +13,7 @@ export default function Navbar() {
       <Link href="/">
         <h2 style={{ color: "white", fontSize: "2rem" }}>E-commerce</h2>
       </Link>
-      <Link href="/cart" className="text-lg border border-green-500">
+      <Link href="/cart">
         <h2 style={{ color: "white", fontSize: "2rem" }}>Cart</h2>
       </Link>
     </nav>

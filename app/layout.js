@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 
 export default function RootLayout({ children }) {
   return (
-   
+    <html lang="en">
     <body className="min-h-screen flex flex-col">
         <Provider store={store} >
         <Navbar /> 
@@ -15,6 +15,6 @@ export default function RootLayout({ children }) {
 
         {/* <h1 className="text-red-500">Tailwind is Working?</h1> */}
       </body>
-
+      </html>
   );
 }

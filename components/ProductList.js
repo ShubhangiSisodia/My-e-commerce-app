@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import Pagination from "./Pagination";
 import { fetchProducts } from "../lib/fetchProducts";
-import "./productCard.css"
+import "./productCard.css";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortBy, setSortBy] = useState(""); 
+  const [sortBy, setSortBy] = useState("");
   const [category, setCategory] = useState(""); // filter state
 
   useEffect(() => {
@@ -30,11 +30,18 @@ export default function ProductList() {
   }, [currentPage, sortBy, category]);
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Products</h1>
+    <div>
+      <h1 style={{ margin: "2rem", fontSize: "1.5rem" }}>Products</h1>
 
       {/* Sorting and Filtering */}
-      <div className="flex gap-4 mb-4">
+      <div
+        style={{
+          margin: "2rem",
+          fontSize: "1.5rem",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <select
           onChange={(e) => setSortBy(e.target.value)}
           className="border p-2"
