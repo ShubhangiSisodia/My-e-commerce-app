@@ -12,20 +12,54 @@ export default function ProductList() {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("");
-  const [category, setCategory] = useState(""); // filter state
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
         setLoading(true);
-        const data = await fetchProducts(currentPage, sortBy, category);
+        let data = await fetchProducts(currentPage);
+
+        // console.log("Fetched products:", data);
+
+        if (category) {
+          data = data.filter((product) => {
+            const lowerCategory = product.category.toLowerCase();
+            if (category === "clothing") {
+              return lowerCategory.includes("clothing");
+            }
+            if (category === "beauty") {
+              return (
+                lowerCategory.includes("beauty") ||
+                lowerCategory.includes("jewel")
+              );
+            }
+            return lowerCategory.includes(category);
+          });
+        }
+
+        if (data.length === 0) {
+          setError("No products found for this category.");
+          setProducts([]);
+          return;
+        }
+
+        // Apply sorting
+        if (sortBy === "price-low") {
+          data.sort((a, b) => a.price - b.price);
+        } else if (sortBy === "price-high") {
+          data.sort((a, b) => b.price - a.price);
+        }
+
         setProducts(data);
+        setError(null);
       } catch (err) {
         setError("Failed to load products");
       } finally {
         setLoading(false);
       }
     };
+
     loadProducts();
   }, [currentPage, sortBy, category]);
 
@@ -42,15 +76,17 @@ export default function ProductList() {
           justifyContent: "space-between",
         }}
       >
+        {/* Sorting Dropdown */}
         <select
           onChange={(e) => setSortBy(e.target.value)}
           className="border p-2"
         >
           <option value="">Sort By</option>
-          <option value="price">Price</option>
-          <option value="rating">Rating</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
         </select>
 
+        {/* Category Filtering Dropdown */}
         <select
           onChange={(e) => setCategory(e.target.value)}
           className="border p-2"
